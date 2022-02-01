@@ -122,7 +122,6 @@
     "vite-plugin-pages": "0.9.5",
     "vite-plugin-purge-icons": "0.7.0",
     "vite-plugin-pwa": "0.7.2",
-    "vite-plugin-radar": "0.2.0",
     "vue-tsc": "0.0.25",
     "yorkie": "2.0.0"
   },

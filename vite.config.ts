@@ -4,12 +4,10 @@ import Vue from "@vitejs/plugin-vue";
 import Pages from "vite-plugin-pages";
 import ViteComponents from "vite-plugin-components";
 import ViteFonts from "vite-plugin-fonts";
-import ViteRadar from "vite-plugin-radar";
 import PurgeIcons from "vite-plugin-purge-icons";
 import { imagetools } from "vite-imagetools";
 import ImageMin from "vite-plugin-imagemin";
 import VueI18n from "@intlify/vite-plugin-vue-i18n";
-import VueroDocumentation from "./vite-plugin-vuero-doc/index";
 import { VitePWA } from "vite-plugin-pwa";
 
 /**
@@ -54,6 +52,7 @@ export default defineConfig({
   },
   plugins: [
     /**
+     * Provide Vue 3 single file component support
      * plugin-vue plugin inject vue library and allow sfc files to work (*.vue)
      *
      * @see https://github.com/vitejs/vite/tree/main/packages/plugin-vue
@@ -81,16 +80,6 @@ export default defineConfig({
     }),
 
     /**
-     * This is an internal vite plugin that load markdown files as vue components.
-     *
-     * @see /documentation
-     * @see /vite-plugin-vuero-doc
-     * @see /src/components/partials/documentation/DocumentationItem.vue
-     * @see /src/composable/useMarkdownToc.ts
-     * */
-    VueroDocumentation(),
-
-    /**
      * vite-plugin-components plugin is responsible of autoloading components
      * documentation and md file are loaded for elements and components sections
      *
@@ -98,7 +87,7 @@ export default defineConfig({
      */
     ViteComponents({
       extensions: ["vue", "md"],
-      dirs: ["documentation", "src/components", "src/layouts"],
+      dirs: ["src/components", "src/layouts"],
       customLoaderMatcher: (path) => path.endsWith(".md"),
     }),
 
@@ -139,17 +128,6 @@ export default defineConfig({
             styles: "wght@300;400;500;600;700",
           },
         ],
-      },
-    }),
-
-    /**
-     * vite-plugin-radar plugin inject snippets from analytics providers
-     *
-     * @see https://github.com/stafyniaksacha/vite-plugin-radar
-     */
-    ViteRadar({
-      analytics: {
-        id: "G-8PH6FM2JEL",
       },
     }),
 
@@ -217,7 +195,7 @@ export default defineConfig({
   ],
   // 服务器配置
   server: {
-    port: 8080,
+    port: 8010,
     open: true,
     https: false,
     // 设置代理

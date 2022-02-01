@@ -155,25 +155,6 @@ Vuero
 |
 ```
 
-## cypress
-
-cypress
-
-## e2e
-
-e2e
-
-### Prettier
-
-Prettier 也是一个流行的代码格式化工具，它能够解析代码，使用你自己设定的规则来重新打印出格式规范的代码。
-
-Prettier 具有以下几个有优点：
-
-- 可配置化
-- 支持多种语言
-- 集成多数的编辑器
-- 简洁的配置项
-
 ## vite
 
 ### plugin-vue
@@ -191,3 +172,30 @@ Prettier 具有以下几个有优点：
 ### vite-plugin-components
 
 Vue 的按需组件自动导入。 [vite-plugin-components](https://github.com/antfu/unplugin-vue-components)
+
+### vite-plugin-pwa
+
+Vue 项目 PWA 化
+
+### vite-plugin-imagemin
+
+一个压缩图片资源的 vite 插件
+
+## cypress
+
+cypress
+
+## e2e
+
+e2e
+
+## Prettier
+
+Prettier 也是一个流行的代码格式化工具，它能够解析代码，使用你自己设定的规则来重新打印出格式规范的代码。
+
+Prettier 具有以下几个有优点：
+
+- 可配置化
+- 支持多种语言
+- 集成多数的编辑器
+- 简洁的配置项
