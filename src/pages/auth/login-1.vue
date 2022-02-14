@@ -1,31 +1,31 @@
 <script setup lang="ts">
-import { ref } from 'vue'
-import { useRouter } from 'vue-router'
-import { useHead } from '@vueuse/head'
+import { ref } from "vue";
+import { useRouter } from "vue-router";
+import { useHead } from "@vueuse/head";
 
-import { isDark } from '/@src/state/darkModeState'
-import useNotyf from '/@src/composable/useNotyf'
-import sleep from '/@src/utils/sleep'
+import { isDark } from "/@src/state/darkModeState";
+import useNotyf from "/@src/composable/useNotyf";
+import sleep from "/@src/utils/sleep";
 
-type StepId = 'login' | 'forgot-password'
-const step = ref<StepId>('login')
-const isLoading = ref(false)
-const router = useRouter()
-const notif = useNotyf()
+type StepId = "login" | "forgot-password";
+const step = ref<StepId>("login");
+const isLoading = ref(false);
+const router = useRouter();
+const notif = useNotyf();
 
 const handleLogin = async () => {
   if (!isLoading.value) {
-    isLoading.value = true
-    await sleep(2000)
-    notif.success('Welcome back, Erik Kovalsky')
-    router.push({ name: 'manager-dashboards' })
-    isLoading.value = false
+    isLoading.value = true;
+    await sleep(2000);
+    notif.success("Welcome back, Erik Kovalsky");
+    router.push({ name: "manager-dashboards" });
+    isLoading.value = false;
   }
-}
+};
 
 useHead({
-  title: 'Auth Login 1 - Vuero',
-})
+  title: "Auth Login 1 - Vuero",
+});
 </script>
 
 <template>
@@ -60,7 +60,7 @@ useHead({
             :checked="!isDark"
             @change="
               (event) => {
-                isDark = !event.target.checked
+                isDark = !event.target.checked;
               }
             "
           />
@@ -91,7 +91,7 @@ useHead({
                 <small class="error-text">This is a required field</small>
                 <div class="auth-label">Email Address</div>
                 <div class="autv-icon">
-                  <i class="lnil lnil-envelope"></i>
+                  <i class="iconify" data-icon="feather:mail"></i>
                 </div>
                 <div class="validation-icon is-success">
                   <V-IconWrap icon="feather:check" />
@@ -108,7 +108,7 @@ useHead({
                 />
                 <div class="auth-label">Password</div>
                 <div class="autv-icon">
-                  <i class="lnil lnil-lock-alt"></i>
+                  <i class="iconify" data-icon="feather:lock"></i>
                 </div>
               </div>
 
@@ -202,8 +202,8 @@ useHead({
 </template>
 
 <style lang="scss" scoped>
-@import '../../scss/abstracts/_variables.scss';
-@import '../../scss/abstracts/_mixins.scss';
+@import "../../scss/abstracts/_variables.scss";
+@import "../../scss/abstracts/_mixins.scss";
 
 .modern-login {
   position: relative;
@@ -373,6 +373,7 @@ useHead({
           display: flex;
           justify-content: center;
           align-items: center;
+          font-size: 24px;
 
           i {
             font-size: 24px;

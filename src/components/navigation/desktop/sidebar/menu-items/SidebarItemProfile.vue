@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import useDropdown from '/@src/composable/useDropdown'
-const { dropdownElement, isOpen, toggle } = useDropdown()
+import useDropdown from "/@src/composable/useDropdown";
+const { dropdownElement, isOpen, toggle } = useDropdown();
 </script>
 
 <template>
@@ -12,7 +12,7 @@ const { dropdownElement, isOpen, toggle } = useDropdown()
       class="dropdown profile-dropdown dropdown-trigger is-spaced is-up"
     >
       <img
-        src="/public/images/avatars/1.jpg"
+        src="/images/avatars/1.jpg"
         alt=""
         @error.once="$event.target.src = 'https://via.placeholder.com/150x150'"
         @click="toggle"
@@ -25,7 +25,7 @@ const { dropdownElement, isOpen, toggle } = useDropdown()
             <div class="v-avatar is-large">
               <img
                 class="avatar"
-                src="/public/images/avatars/1.jpg"
+                src="/images/avatars/1.jpg"
                 alt=""
                 @error.once="
                   $event.target.src = 'https://via.placeholder.com/150x150'
@@ -37,10 +37,7 @@ const { dropdownElement, isOpen, toggle } = useDropdown()
               <span>Product Manager</span>
             </div>
           </div>
-          <RouterLink
-            :to="{ name: '' }"
-            class="dropdown-item is-media"
-          >
+          <RouterLink :to="{ name: '' }" class="dropdown-item is-media">
             <div class="icon">
               <i class="lnil lnil-user-alt"></i>
             </div>
