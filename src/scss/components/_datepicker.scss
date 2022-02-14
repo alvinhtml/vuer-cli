@@ -1,0 +1,265 @@
+/*! _datepicker.scss | Vuero | Css ninja 2020-2021 */
+
+/*
+    0. V-Calendar
+    1. V-Calendar Dark mode
+*/
+
+/* ==========================================================================
+0. V-Calendar
+========================================================================== */
+
+.vc-pane-container {
+  .vc-pane-layout {
+    font-family: $font;
+
+    .vc-pane {
+      padding: 1rem;
+    }
+
+    .vc-header {
+      .vc-title {
+        font-size: 1rem;
+        font-weight: 500;
+      }
+    }
+
+    .vc-weeks {
+      margin-top: 0.75rem;
+
+      .vc-weekday {
+        font-weight: 400;
+        font-size: 0.9rem;
+      }
+
+      .vc-day {
+        .vc-day-layer {
+          .vc-day-content {
+            //font-size: .9rem !important;
+          }
+        }
+      }
+    }
+  }
+
+  .vc-day-content {
+    font-size: 0.9rem !important;
+    font-weight: 500;
+  }
+
+  .vc-arrows-container {
+    top: 1.3rem;
+    padding: 8px 24px;
+
+    .vc-arrow {
+      border-radius: $radius-rounded;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      svg {
+        position: relative;
+        top: -1px;
+        height: 20px;
+        width: 20px;
+      }
+    }
+  }
+}
+
+.vc-popover-content-wrapper {
+  .vc-nav-popover-container {
+    .vc-nav-container {
+      padding: 0.75rem;
+
+      .vc-nav-header {
+        margin-bottom: 0.75rem;
+
+        .vc-nav-title,
+        .vc-nav-arrow {
+          &:active,
+          &:focus {
+            outline: none !important;
+            border-color: transparent !important;
+          }
+        }
+
+        .vc-nav-arrow {
+          position: relative;
+          top: 0.25rem;
+          border-radius: $radius-rounded;
+          width: 24px;
+          height: 24px;
+          min-width: 24px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          color: $white;
+
+          svg {
+            position: relative;
+            top: -1px;
+            height: 20px;
+            width: 20px;
+            stroke: $white;
+          }
+        }
+      }
+
+      .vc-nav-items {
+        .vc-nav-item {
+          color: $white;
+          font-family: $font;
+          font-weight: 400;
+          font-size: 0.75rem;
+          text-transform: uppercase;
+          padding-top: 0.5rem;
+          padding-bottom: 0.5rem;
+
+          &.is-active {
+            background: $primary !important;
+          }
+        }
+      }
+    }
+  }
+}
+
+.vc-time-content {
+  .vc-time-date {
+    > span {
+      font-size: 0.9rem;
+    }
+  }
+
+  .vc-am-pm {
+    > button {
+      font-family: $font;
+      font-size: 0.85rem;
+    }
+  }
+}
+
+.vc-time-picker {
+  .vc-date-time {
+    .vc-date {
+      > span {
+        font-family: $font;
+        font-size: 0.9rem;
+      }
+    }
+  }
+}
+
+/* ==========================================================================
+1. V-Calendar Dark mode
+========================================================================== */
+
+.is-dark {
+  .vc-popover-content-wrapper {
+    .vc-popover-caret {
+      border-color: $dark-sidebar !important;
+    }
+  }
+
+  .vc-container {
+    background: $dark-sidebar !important;
+    border: 1px solid lighten($dark-sidebar, 8%) !important;
+  }
+
+  .vc-pane-container {
+    .vc-pane-layout {
+      .vc-header {
+        .vc-title {
+          color: $dark-dark-text !important;
+        }
+      }
+    }
+
+    .vc-day-content {
+      color: $dark-dark-text;
+
+      &:hover {
+        background: lighten($dark-sidebar, 4%) !important;
+      }
+    }
+
+    .vc-arrows-container {
+      .vc-arrow {
+        &:hover {
+          background: lighten($dark-sidebar, 4%) !important;
+        }
+      }
+    }
+  }
+
+  .vc-popover-content-wrapper {
+    .vc-nav-popover-container {
+      background: darken($dark-sidebar, 4%) !important;
+      border-color: lighten($dark-sidebar, 4%) !important;
+
+      .vc-nav-container {
+        .vc-nav-header {
+          .vc-nav-title,
+          .vc-nav-arrow {
+            &:hover {
+              background: lighten($dark-sidebar, 2%) !important;
+            }
+          }
+        }
+
+        .vc-nav-items {
+          .vc-nav-item {
+            color: $white;
+
+            &:not(.is-active):hover {
+              background: lighten($dark-sidebar, 2%) !important;
+            }
+
+            &.is-active {
+              background: $primary !important;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .vc-time-picker {
+    &.vc-bordered {
+      border-color: lighten($dark-sidebar, 12%) !important;
+    }
+
+    .vc-date-time {
+      .vc-date {
+        .vc-time-weekday {
+          color: $light-text !important;
+        }
+      }
+    }
+
+    .vc-time-content {
+      .vc-time-date {
+        .vc-time-weekday {
+          color: $light-text !important;
+        }
+      }
+
+      .vc-select {
+        select {
+          background: darken($dark-sidebar, 4%) !important;
+          border-color: darken($dark-sidebar, 4%) !important;
+          color: $dark-dark-text !important;
+        }
+      }
+
+      .vc-am-pm {
+        background: darken($dark-sidebar, 4%) !important;
+
+        > button {
+          color: $white !important;
+        }
+      }
+    }
+  }
+}

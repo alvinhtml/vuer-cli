@@ -1,0 +1,115 @@
+/*! _circle-chart.scss | Vuero | Css Ninja 2020-2021 */
+
+/*
+    1. Circle Chart
+    2. Circle Chart Dark mode
+*/
+
+/* ==========================================================================
+1. Circle Chart
+========================================================================== */
+
+.circle-chart-wrapper {
+  &.is-success {
+    .circle-chart__circle {
+      color: $success !important;
+      stroke: $success !important;
+    }
+  }
+
+  &.is-info {
+    .circle-chart__circle {
+      color: $info !important;
+      stroke: $info !important;
+    }
+  }
+
+  &.is-warning {
+    .circle-chart__circle {
+      color: $warning !important;
+      stroke: $warning !important;
+    }
+  }
+
+  &.is-danger {
+    .circle-chart__circle {
+      color: $danger !important;
+      stroke: $danger !important;
+    }
+  }
+}
+
+.circle-chart__circle {
+  animation: circle-chart-fill 2.4s reverse;
+  transform: rotate(90deg);
+  transform-origin: center;
+  color: $primary;
+  stroke: $primary;
+  animation-timing-function: cubic-bezier(0.78, 0.59, 0.19, 0.33);
+}
+
+.circle-chart__circle_2 {
+  animation: circle-chart-fill_3 4s reverse;
+}
+
+.circle-chart__background {
+  color: #efefef;
+  stroke: #efefef;
+}
+
+@keyframes circle-chart-fill {
+  50% {
+    stroke-dasharray: 0 0;
+  }
+
+  100% {
+    stroke-dasharray: 0 100;
+  }
+}
+
+@keyframes circle-chart-fill_2 {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    stroke-dasharray: 0 100;
+    opacity: 0;
+  }
+}
+
+@keyframes circle-chart-fill_3 {
+  0% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 1;
+    stroke-dasharray: 0 100;
+  }
+
+  100% {
+    stroke-dasharray: 0 100;
+    opacity: 0;
+  }
+}
+
+/* ==========================================================================
+2. Circle Chart Dark mode
+========================================================================== */
+
+.is-dark {
+  .circle-chart-wrapper {
+    &:not(.is-success):not(.is-info):not(.is-warning):not(.is-danger) {
+      .circle-chart__circle {
+        color: $accent !important;
+        stroke: $accent !important;
+      }
+    }
+  }
+
+  .circle-chart__background {
+    color: darken($dark-sidebar, 2%);
+    stroke: darken($dark-sidebar, 2%);
+  }
+}

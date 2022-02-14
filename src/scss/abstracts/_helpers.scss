@@ -1,0 +1,216 @@
+/*! _helpers.scss | Vuero | Css ninja 2020-2021 */
+
+/*
+    1. Spacing helpers
+    2. Color helpers
+    3. Shadow helpers
+    4. Dark helpers
+    5. Radius helpers
+*/
+
+/* ==========================================================================
+1. Spacing helpers
+========================================================================== */
+
+@each $space in $spaceamounts {
+  @each $side in $sides {
+    .m-#{str-slice($side, 0, 1)}-#{$space} {
+      margin-#{$side}: #{$space}px !important;
+    }
+
+    .p-#{str-slice($side, 0, 1)}-#{$space} {
+      padding-#{$side}: #{$space}px !important;
+    }
+  }
+}
+
+.no-padding-all {
+  padding: 0 !important;
+}
+
+.no-padding-top {
+  padding-top: 0 !important;
+}
+
+.no-padding-bottom {
+  padding-bottom: 0 !important;
+}
+
+.no-padding-left {
+  padding-left: 0 !important;
+}
+
+.no-padding-right {
+  padding-right: 0 !important;
+}
+
+.no-margin-all {
+  margin: 0 !important;
+}
+
+.no-margin-top {
+  margin-top: 0 !important;
+}
+
+.no-margin-bottom {
+  margin-bottom: 0 !important;
+}
+
+.no-margin-left {
+  margin-left: 0 !important;
+}
+
+.no-margin-right {
+  margin-right: 0 !important;
+}
+
+.has-fullheight {
+  height: 100%;
+}
+
+.has-fullwidth {
+  width: 100%;
+}
+
+.no-scroll {
+  overflow: hidden !important;
+}
+
+.has-help-cursor {
+  cursor: help;
+}
+
+/* ==========================================================================
+2. Color helpers
+========================================================================== */
+
+@mixin color-modifiers($attribute, $prefix) {
+  @each $name, $hex in $vuero-colors {
+    &#{$prefix}#{$name} {
+      #{$attribute}: $hex !important;
+    }
+  }
+}
+
+.text {
+  @each $name, $hex in $vuero-colors {
+    &-#{$name} {
+      color: $hex !important;
+    }
+  }
+}
+
+.hover-text {
+  @each $name, $hex in $vuero-colors {
+    &-#{$name} {
+      &:hover {
+        color: $hex !important;
+      }
+    }
+  }
+}
+
+.bg {
+  @each $name, $hex in $vuero-colors {
+    &-#{$name} {
+      background: $hex !important;
+    }
+  }
+}
+
+.hover-bg {
+  @each $name, $hex in $vuero-colors {
+    &-#{$name} {
+      &:hover {
+        background: $hex !important;
+        color: findColorInvert($hex) !important;
+      }
+    }
+  }
+}
+
+.has-text-secondary {
+  color: $secondary !important;
+}
+
+// /* ==========================================================================
+// 3. Shadow helpers
+// ========================================================================== */
+
+.has-light-shadow {
+  box-shadow: $light-box-shadow;
+
+  &.has-light-border {
+    border: 1px solid darken($fade-grey, 3%);
+  }
+}
+
+/* ==========================================================================
+4. Dark helpers
+========================================================================== */
+
+.is-dark {
+  //Card border helper
+  .is-dark-card-bordered,
+  .is-dark-bordered-12 {
+    border-color: lighten($dark-sidebar, 12%) !important;
+  }
+
+  //Primary Helper
+  .is-dark-primary {
+    color: $accent !important;
+  }
+
+  .is-dark-primary-hover:hover {
+    color: $accent !important;
+  }
+
+  //BG Helpers
+  .is-dark-bg-1 {
+    background: lighten($dark-sidebar, 1%) !important;
+  }
+
+  .is-dark-bg-2 {
+    background: lighten($dark-sidebar, 2%) !important;
+  }
+
+  .is-dark-bg-3 {
+    background: lighten($dark-sidebar, 3%) !important;
+  }
+
+  .is-dark-bg-4 {
+    background: lighten($dark-sidebar, 4%) !important;
+  }
+
+  .is-dark-bg-5 {
+    background: lighten($dark-sidebar, 5%) !important;
+  }
+
+  .is-dark-bg-6 {
+    background: lighten($dark-sidebar, 6%) !important;
+  }
+}
+
+/* ==========================================================================
+4. Radius helpers
+========================================================================== */
+
+.radius-5 {
+  border-radius: 0.5rem;
+}
+
+.radius-75 {
+  border-radius: 0.75rem;
+}
+
+.radius-full {
+  border-radius: $radius-rounded;
+}
+
+/* ==========================================================================
+5. Size helpers
+========================================================================== */
+
+.max-w-540 {
+  max-width: 540px;
+}

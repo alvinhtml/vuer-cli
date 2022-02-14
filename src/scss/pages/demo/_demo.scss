@@ -1,0 +1,549 @@
+/*! _demo.scss | Vuero | Css ninja 2020-2021 */
+
+/*
+    1. Demo Cards
+    2. Demo Card Dark mode
+    3. Media Queries
+*/
+
+/* ==========================================================================
+1. Demo Card
+========================================================================== */
+
+.demo-card {
+  @include vuero-s-card();
+
+  position: relative;
+  margin-bottom: 1.5rem;
+
+  &.has-more-margin {
+    margin-bottom: 3rem;
+  }
+
+  &.has-margin-top {
+    margin-top: 3rem;
+  }
+
+  &.is-narrow {
+    margin-bottom: 0;
+  }
+
+  .demo-title {
+    h3 {
+      font-family: $font-alt;
+      font-size: 1.25rem;
+      font-weight: 300;
+      margin-bottom: 0.75rem;
+      color: $dark-text;
+      line-height: 1.125;
+    }
+
+    p {
+      max-width: 540px;
+
+      a {
+        font-weight: 500;
+        color: $primary;
+      }
+    }
+  }
+
+  .code-trigger {
+    position: absolute;
+    top: 16px;
+    right: 20px;
+    height: 36px;
+    width: 36px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: $radius-rounded;
+    border: 1px solid darken($fade-grey, 3%);
+    box-shadow: $light-box-shadow;
+    transition: all 0.3s;
+
+    &:hover {
+      svg {
+        color: $dark-text;
+      }
+    }
+
+    &.is-active {
+      border-color: darken($fade-grey, 6%);
+      transform: rotate(180deg);
+
+      svg {
+        color: $primary;
+
+        &.open {
+          display: none !important;
+        }
+
+        &.close {
+          display: block !important;
+        }
+      }
+    }
+
+    svg {
+      height: 16px;
+      width: 16px;
+      color: $light-text;
+      transition: stroke 0.3s;
+
+      &.open {
+        display: block !important;
+      }
+
+      &.close {
+        display: none !important;
+        opacity: 1 !important;
+      }
+    }
+  }
+
+  .card-inner {
+    padding: 0;
+
+    &.no-padding {
+      padding: 0;
+    }
+
+    .buttons {
+      margin-bottom: 0;
+    }
+
+    .is-grouped-multiline,
+    .tabs-wrapper,
+    .progress,
+    .message,
+    .snacks,
+    .filepond-uploader {
+      max-width: 540px;
+    }
+
+    .demo-icon-list {
+      display: flex;
+      flex-wrap: wrap;
+
+      //justify-content: center;
+
+      li {
+        width: 20%;
+        border-radius: 0.25em;
+        transition: background-color 0.2s;
+        user-select: none;
+        overflow: hidden;
+        text-align: center;
+        padding: 2rem 1rem;
+        cursor: pointer;
+
+        &:hover {
+          background-color: lighten($fade-grey, 5%);
+
+          .lnil,
+          .lnir,
+          .fas,
+          .fab {
+            transform: scale(1.1);
+            color: $primary;
+          }
+
+          svg {
+            transform: scale(1.1);
+            color: $primary;
+          }
+        }
+      }
+
+      .lnil,
+      .lnir,
+      .fas,
+      .fab {
+        color: $light-text;
+        font-size: 1.6rem;
+        transition: all 0.35s;
+      }
+
+      svg {
+        height: 20px;
+        width: 20px;
+        stroke-width: 1.8px;
+        color: $light-text;
+        transition: stroke 0.3s;
+      }
+
+      input,
+      em,
+      .icon-unicode {
+        display: none;
+      }
+
+      .icon.w-grid-2 {
+        padding: 4rem 0 !important;
+      }
+
+      .icon-name {
+        color: $light-text;
+      }
+    }
+
+    .field {
+      &.credit-card {
+        padding-bottom: 4rem;
+      }
+
+      &:not(.credit-card) {
+        max-width: 540px;
+        flex-wrap: wrap;
+
+        &.is-grouped {
+          .control {
+            margin-bottom: 0.75rem;
+          }
+        }
+
+        &.demo-select {
+          max-width: 340px;
+        }
+      }
+    }
+  }
+
+  .highlight-block {
+    margin-top: 20px;
+  }
+
+  .content {
+    table {
+      margin-top: 2rem;
+      // background-color: red;
+
+      th {
+        font-size: 0.9rem;
+        font-weight: 600;
+        font-family: $font-alt;
+        border-bottom: solid 1px $border;
+
+        &:first-of-type {
+          width: 200px;
+        }
+      }
+
+      td {
+        font-size: 1rem;
+        font-weight: 400;
+        font-family: $font;
+        border-bottom: solid 1px $border;
+
+        code {
+          font-family: $font-monospace;
+
+          &:first-child {
+            padding-left: 0 !important;
+          }
+        }
+
+        .is-string {
+          code {
+            color: #41b883;
+          }
+        }
+        .is-function {
+          code {
+            color: #678eaf;
+          }
+        }
+        .is-number,
+        .is-boolean {
+          code {
+            color: #678eaf;
+          }
+        }
+        .is-null,
+        .is-undefined {
+          code {
+            color: #a04900;
+          }
+        }
+        .is-array {
+          code {
+            color: $dark-text;
+          }
+        }
+      }
+    }
+  }
+}
+
+.color-card {
+  @include vuero-s-card();
+
+  display: flex;
+  align-items: center;
+
+  .color-dot {
+    height: 40px;
+    width: 40px;
+    border-radius: $radius-rounded;
+
+    &.is-primary {
+      background: $primary;
+    }
+
+    &.is-accent {
+      background: $accent;
+    }
+
+    &.is-success {
+      background: $success;
+    }
+
+    &.is-info {
+      background: $info;
+    }
+
+    &.is-warning {
+      background: $warning;
+    }
+
+    &.is-danger {
+      background: $danger;
+    }
+
+    &.is-dark {
+      background: $dark-sidebar;
+    }
+
+    &.is-fade-grey {
+      background: $fade-grey;
+    }
+
+    &.is-muted-grey {
+      background: $muted-grey;
+    }
+
+    &.is-placeholder {
+      background: $placeholder;
+    }
+
+    &.is-dark-text {
+      background: $dark-text;
+    }
+
+    &.is-light-text {
+      background: $light-text;
+    }
+
+    &.is-h-purple {
+      background: $h-purple;
+    }
+
+    &.is-h-blue {
+      background: $h-blue;
+    }
+
+    &.is-h-green {
+      background: $h-green;
+    }
+
+    &.is-h-red {
+      background: $h-red;
+    }
+
+    &.is-h-yellow {
+      background: $h-yellow;
+    }
+
+    &.is-h-orange {
+      background: $h-orange;
+    }
+  }
+
+  .meta {
+    margin-left: 12px;
+
+    span {
+      display: block;
+      font-family: $font-alt;
+
+      &:first-child {
+        color: $dark-text;
+        font-weight: 600;
+      }
+
+      &:nth-child(2) {
+        font-size: 0.9rem;
+        color: $light-text;
+      }
+    }
+  }
+}
+
+.demo-s-card,
+.demo-r-card,
+.demo-l-card {
+  .title {
+    margin-bottom: 6px;
+  }
+}
+
+.demo-spacer {
+  padding-bottom: 100px;
+}
+
+.demo-editor-container {
+  max-width: 740px;
+  margin: 0 auto;
+}
+
+.helper-table {
+  .category,
+  th {
+    width: 25%;
+    font-family: $font-alt;
+    font-weight: 600;
+    font-size: 1.05rem;
+  }
+
+  .name {
+    width: 25%;
+  }
+
+  .description {
+    width: 50%;
+  }
+}
+
+.demo-table {
+  .table {
+    th {
+      font-family: $font-alt;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+  }
+}
+
+.demo-field {
+  max-width: 340px;
+}
+
+/* ==========================================================================
+2. Demo Card Dark mode
+========================================================================== */
+
+.is-dark {
+  .demo-card {
+    @include vuero-card--dark();
+
+    .demo-title {
+      h3 {
+        color: $dark-dark-text;
+      }
+
+      .code-trigger {
+        border-color: lighten($dark-sidebar, 14%);
+        &:hover {
+          svg {
+            color: $light-text;
+          }
+        }
+
+        &.is-active {
+          border-color: lighten($dark-sidebar, 16%);
+          background: lighten($dark-sidebar, 12%);
+
+          svg {
+            color: $primary;
+          }
+        }
+      }
+    }
+
+    .demo-icon-list {
+      li:hover {
+        background-color: lighten($dark-sidebar, 10%) !important;
+
+        .lnil,
+        .lnir,
+        .fas,
+        .fab {
+          color: $accent;
+        }
+
+        svg {
+          color: $accent;
+        }
+      }
+    }
+  }
+
+  .color-card {
+    @include vuero-card--dark();
+
+    .meta {
+      span {
+        &:first-child {
+          color: $dark-dark-text;
+        }
+      }
+    }
+  }
+}
+
+/* ==========================================================================
+3. Media Queries
+========================================================================== */
+
+@media only screen and (max-width: 767px) {
+  .demo-card {
+    .demo-title {
+      .code-trigger {
+        top: 10px;
+        right: 12px;
+      }
+    }
+
+    .field {
+      &.is-grouped {
+        .control {
+          margin-bottom: 0.75rem;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (min-device-width: 1024px) and (orientation: portrait) {
+  .landing-page-wrapper .hero .navbar {
+    &:not(.is-docked) {
+      .navbar-menu {
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+        border: none !important;
+
+        .navbar-item {
+          &.is-theme-toggle {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          }
+        }
+      }
+    }
+
+    .navbar-brand {
+      width: auto !important;
+    }
+
+    .navbar-menu {
+      width: auto;
+      position: static;
+
+      .navbar-end {
+        margin-right: -28px;
+      }
+    }
+  }
+}
