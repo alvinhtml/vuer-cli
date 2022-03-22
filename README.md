@@ -2,6 +2,20 @@
 
 vuer-cli
 
+## Use command
+
+安装命令
+
+```bash
+npm install -g vuer-cli
+```
+
+创建一个新项目：
+
+```bash
+vuer create <project-name>
+```
+
 ### Dependencies installation
 
 To setup the template and start installing project dependencies, run one of the following commands:
