@@ -2,7 +2,7 @@ import program from 'commander'
 import inquirer from 'inquirer'
 import kleur from 'kleur'
 import clone from 'git-clone'
-import shelljs from 'shelljs'
+import shell from 'shelljs'
 import {
   Listr
 } from 'listr2'
@@ -28,7 +28,7 @@ class Vuer {
         type: 'list',
         name: 'preset',
         message: 'Please pick a preset:',
-        choices: ['Vue 3.x', 'Vue 3.x + vuero + TypeScript', 'Manually select features'],
+        choices: ['Vue 3.x + vuero + vuex', 'Vue 3.x + vuero + pinia', 'Manually select features'],
         filter(val) {
           return val.toLowerCase();
         }
@@ -54,112 +54,51 @@ class Vuer {
         }
       }])
       .then((answers) => {
-        console.log(JSON.stringify(answers, null, '  '))
-        const pwd = shelljs.pwd()
+        const pwd = shell.pwd()
+        const branch = answers.preset === 'vue 3.x + vuero + vuex' ? 'vue3-vuero-vuex' : 'vue3-vuero-pinia'
 
-        // const tasks = new Listr([{
-        //     title: 'Creating project',
-        //     task: () => {
-        //       return new Listr([{
-        //           title: 'Pull code from git repository...',
-        //           task: () => {
-        //             return new Promise((resolve, reject) => {
-        //               // clone(`https://github.com/alvinhtml/vuer-cli.git`, `${pwd}/${project}`, {
-        //               //   checkout: 'template-repository'
-        //               // }, function () {
-        //               //   resolve()
-        //               // })
-        //               resolve()
-        //             })
-        //           }
-        //         },
-        //         {
-        //           title: 'Initializing git repository...',
-        //           task: () => {
-        //             shell.rm('-rf', pwd + `/${project}/.git`)
-        //           }
-        //         }
-        //       ])
-        //     }
-        //   },
-        //   {
-        //     title: 'Initialize configuration',
-        //     task: () => {
-        //       setTimeout(() => {
-        //         Promise.resolve()
-        //       }, 1000)
-        //     }
-        //   },
-        //   {
-        //     title: 'Install dependencies',
-        //     task: () => {
-        //       return new Listr([{
-        //         title: 'Installing npm dependencies. This might take a while...',
-        //         task: (ctx, task) => {
-        //           return new Promise((resolve, reject) => {
-        //             // shell.exec('npm install', () => {
-        //             //   resolve()
-        //             // })
-        //             setTimeout(() => {
-        //               resolve()
-        //               task.title = 'Completed'
-        //             }, 3000)
-        //           })
-        //         }
-        //       }])
-        //     }
-        //   }
-        // ])
+        console.log(JSON.stringify({
+          answers: answers,
+          pwd: pwd,
+          project: project
+        }, null, '  '))
 
         const tasks = new Listr(
           [{
             title: 'Creating project',
-            task: async (ctx, task) => {
+            task: async (_, task) => {
               return task.newListr([{
-                title: 'Pull code from git repository...',
-                task: async (ctx, task) => {
+                title: 'Copying files...',
+                task: async (_, task) => {
                   await new Promise((resolve, reject) => {
-                    // clone(`https://github.com/alvinhtml/vuer-cli.git`, `${pwd}/${project}`, {
-                    //   checkout: 'template-repository'
-                    // }, function () {
-                    //   resolve()
-                    // })
-                    setTimeout(() => {
+                    clone(`https://github.com/alvinhtml/vuer-cli.git`, `${pwd}/${project}`, {
+                      checkout: branch
+                    }, function () {
+                      task.title = 'Completed'
                       resolve()
-                      task.title = 'Completed!'
-                    }, 3000)
+                    })
                   })
                 }
               }, {
-                title: 'Initializing git repository...',
-                task: async () => {
-                  // shell.rm('-rf', pwd + `/${project}/.git`)
+                title: 'Initializing project...',
+                task: async (_, task) => {
                   await new Promise((resolve, reject) => {
-                    setTimeout(() => {
-                      resolve()
-                      task.title = 'Git repository initialized.'
-                    }, 3000)
+                    shell.rm('-rf', pwd + `/${project}/.git`)
+                    task.title = 'Completed'
+                    resolve()
                   })
                 }
               }])
             }
           }, {
-            title: 'Install dependencies',
+            title: 'Install dependencies. This might take a while...',
             task: async (ctx, task) => {
-              return task.newListr([{
-                title: 'Installing npm dependencies. This might take a while...',
-                task: async (ctx, task) => {
-                  await new Promise((resolve, reject) => {
-                    // shell.exec('npm install', () => {
-                    //   resolve()
-                    // })
-                    setTimeout(() => {
-                      resolve()
-                      task.title = 'Completed!'
-                    }, 3000)
-                  })
-                }
-              }])
+              await new Promise((resolve, reject) => {
+                shell.exec(`npm install --prefix ./${project}`, () => {
+                  resolve()
+                  task.title = 'Install dependencies.'
+                })
+              })
             }
           }], {
             concurrent: false
